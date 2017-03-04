@@ -1,0 +1,85 @@
+<ion-side-menus enable-menu-with-back-views="false" >
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" class="menu-screen" >
+    <ion-header-bar class="bar bar-transparent">
+      <h1 class="title brand-base-text-color">Menu</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close href="#/app/tinder-profile/1">
+          Tinder Profile
+        </ion-item>
+        <ion-item menu-close href="#/app/tinder-one">
+          Tinder Style One
+        </ion-item>
+        <ion-item menu-close href="#/app/tinder-two">
+          Tinder Style Two
+        </ion-item>
+        <ion-item menu-close href="#/app/tinder-three">
+          Tinder Style Three
+        </ion-item>
+        <ion-item menu-close href="#/app/tinder-four">
+          Tinder Style Four
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu side="right">
+    <ion-content class="menu-screen">
+      <!-- Group Header -->
+      <h6 class="group-header">Already Matched</h6>
+      <!-- End Group Header -->
+
+      <div class="list notifications">
+
+          <a class="item item-avatar" href="#">
+            <img src="img/demo/profile-image.jpg" class="notification-thumb">
+            <h3 class="notification-title"><i class="ion-email"></i> Tracy Sent you a message</h3>
+            <p class="notification-summary">“nom nom nom......nom!”</p>
+          </a>
+
+          <a class="item item-avatar" href="#">
+            <img src="img/demo/profile-image-2.jpg" class="notification-thumb">
+            <h3 class="notification-title"><i class="ion-email"></i> Tracy Sent you a message</h3>
+            <p class="notification-summary">Feedback.mp4 | 4:44 mins</p>
+          </a>
+
+          <a class="item item-avatar" href="#">
+            <img src="img/demo/profile-image-3.jpg" class="notification-thumb">
+            <h3 class="notification-title"><i class="ion-email"></i> Tracy Sent you a message</h3>
+            <p class="notification-summary">“I will find you....”</p>
+          </a>
+
+          <a class="item item-avatar" href="#">
+            <img src="img/demo/profile-image-4.jpg" class="notification-thumb">
+            <h3 class="notification-title"><i class="ion-email"></i> Tracy Sent you a message</h3>
+            <p class="notification-summary">the-truth.mp3 | 2:33 mins</p>
+          </a>
+
+          <a class="item item-avatar" href="#">
+            <img src="img/demo/profile-image-5.jpg" class="notification-thumb">
+            <h3 class="notification-title"><i class="ion-email"></i> Tracy Sent you a message</h3>
+            <p class="notification-summary">Back off, man. I'm a scientist.</p>
+          </a>
+
+      </div>
+
+
+
+    </ion-content>
+
+  </ion-side-menu>
+</ion-side-menus>

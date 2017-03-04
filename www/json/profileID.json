@@ -1,0 +1,12 @@
+{
+   "image":"http:\/\/audacitus.com\/tinderonic-json\/img\/tinder-full-pic.jpg?308",
+   "title":"Samantha Gambles",
+   "location":"Manchester",
+   "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+   "vipStatus":false,
+   "sliderImages":[
+      "http:\/\/audacitus.com\/tinderonic-json\/img\/tinder-slider-image.jpg?308",
+      "http:\/\/audacitus.com\/tinderonic-json\/img\/tinder-slider-image-1.jpg?308",
+      "http:\/\/audacitus.com\/tinderonic-json\/img\/tinder-slider-image-2.jpg?308"
+   ]
+}

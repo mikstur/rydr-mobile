@@ -1,0 +1,102 @@
+<ion-side-menus enable-menu-with-back-views="false" class="tinder-premium-one" >
+  <ion-side-menu-content drag-content="false" class="">
+    <ion-nav-bar class="">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-fireball" menu-toggle="right">
+          <span class="notification-bubble">8</span>
+        </button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" width="250" class="premium-menu-screen left" >
+    <!-- <ion-header-bar class="bar bar-transparent">
+      <h1 class="title brand-base-text-color">Menu</h1>
+    </ion-header-bar> -->
+    <ion-content>
+
+      <ion-list>
+        <!-- <ion-item menu-close href="#/app/tinder-profile/1">
+          Tinder Profile
+        </ion-item> -->
+        <ion-item menu-close ui-sref="premiumappOne.tinder-profile({profileID: 1})" class="item-thumbnail item-icon-right">
+          <img src="img/demo/profile-image-3.jpg" class="profile-thumb">
+          Selvinko Ivanov
+          <i class="icon ion-ios-gear-outline"></i>
+        </ion-item>
+        <ion-item menu-close href="#" class="item-icon-left">
+          <i class="icon ion-email"></i> Messages
+        </ion-item>
+        <ion-item menu-close href="#" class="item-icon-left">
+          <i class="icon ion-ios-gear-outline"></i> Settings
+        </ion-item>
+        <ion-item menu-close href="#">
+          Notifications
+          <span class="badge badge-assertive">6</span>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left" href="#">
+          <i class="icon ion-ios-information"></i> About Tinderonic
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-assertive padding-horizontal">
+        <button class="button button-clear"><i class="ion-log-out"></i> Logout</button>
+      </div>
+  </ion-side-menu>
+
+  <ion-side-menu side="right" width="250">
+    <ion-content class="premium-menu-screen">
+      <label class="item item-input">
+        <input type="text" placeholder="Search" class="text-color-contrast">
+      </label>
+      <!-- Group Header -->
+      <h3 class="group-header"><i class="ion-fireball"></i>Matches </h3>
+      <!-- End Group Header -->
+
+      <div class="list matches">
+          <a class="item item-avatar" href="#" menu-close ui-sref="premiumappOne.chat">
+            <img src="img/demo/profile-image.jpg" class="notification-thumb">
+            <h2 class="match-name">Marcy</h2>
+            <p class="match-detail">“nom nom nom......nom!”</p>
+            <span class="badge badge-assertive">0</span>
+          </a>
+
+          <a class="item item-avatar" href="#" menu-close ui-sref="premiumappOne.chat">
+            <img src="img/demo/profile-image-2.jpg" class="notification-thumb">
+            <h2 class="match-name">Trish</h2>
+            <p class="match-detail">Feedback.mp4 | 4:44 mins</p>
+          </a>
+
+          <a class="item item-avatar" href="#" menu-close ui-sref="premiumappOne.chat">
+            <img src="img/demo/profile-image-3.jpg" class="notification-thumb">
+            <h2 class="match-name">David</h2>
+            <p class="match-detail">“I will find you....”</p>
+          </a>
+
+          <a class="item item-avatar" href="#" menu-close ui-sref="premiumappOne.chat">
+            <img src="img/demo/profile-image-4.jpg" class="notification-thumb">
+            <h2 class="match-name">Maxwell</h2>
+            <p class="match-detail">the-truth.mp3 | 2:33 mins</p>
+          </a>
+
+          <a class="item item-avatar" href="#" menu-close ui-sref="premiumappOne.chat">
+            <img src="img/demo/profile-image-5.jpg" class="notification-thumb">
+            <h2 class="match-name">Tyler</h2>
+            <p class="match-detail">Back off, man. I'm a scientist.</p>
+          </a>
+
+      </div>
+
+    </ion-content>
+
+  </ion-side-menu>
+</ion-side-menus>

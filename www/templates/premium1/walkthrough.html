@@ -1,0 +1,61 @@
+<!-- Walkthrough Screen - refer to scss/screens/walkthrough.scss -->
+<ion-view view-title="Walkthrough" hide-nav-bar="true">
+  <ion-content scroll="false" class="walkthrough-premiumone-screen">
+
+  <!-- 
+  Custom Navbar. Prev/Next Text and Actions change according 
+  to which slide is active. Refer to 
+  www/js/controllers.js -> WalkthroughCtrl
+  -->
+  <div class="walkthrough-bar bar-bg-clear">
+    <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="leftButton.show" ng-click="leftButton.tapFxn()">
+    	{{leftButton.text}}
+    </button>
+    <!-- <h1 class="title walkthrough-text-color-{{slideIndex}}">Tinder Style 4</h1> -->
+    <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="rightButton.show" ng-click="rightButton.tapFxn()">
+      {{rightButton.text}}
+    </button>
+    <!-- <button ng-show="lastSlide">Start App</button> -->
+  </div>
+  <!-- End Custom Navbar -->
+	
+	<!-- 
+  #### Ionic Slider Section #### 
+
+  We're using the slider's index to target 
+  the css styling for each slide 
+  (and its animated background-color change)
+
+  -->
+	<ion-slide-box on-slide-changed="slideChanged(index)" class="animate-bg-{{slideIndex}}">
+
+    <!-- Slide -->
+    <ion-slide>
+      <h2 class="walkthrough-text-color-{{slideIndex}}">Tinderonic</h2>
+      <div class="slider-img-logo">
+        <img src="img/demo/logo.png">
+      </div>
+      <h4 class="walkthrough-text-color-{{slideIndex}}">Build a Tinder-like app in minutes. Not hours/days</h4>
+    </ion-slide>
+
+    <!-- Slide -->
+    <ion-slide>
+      <h2 class="walkthrough-text-color-{{slideIndex}}">AJAX/JSON Support</h2>
+      <div class="slider-img-logo">
+        <img src="img/demo/walkthrough-async-logo.png">
+      </div>
+      <h4 class="walkthrough-text-color-{{slideIndex}}">Match your Endpoints to our API-Client and JSON and you're good to go</h4>
+    </ion-slide>
+
+    <!-- Slide -->
+    <ion-slide>
+      <h2 class="walkthrough-text-color-{{slideIndex}}">Premium Templates</h2>
+      <div class="slider-img-logo">
+        <img src="img/demo/walkthrough-design.png">
+      </div>
+      <h4 class="walkthrough-text-color-{{slideIndex}}">Use the basic styles and its color manager. Or use our brand new templatepack for tinderonic</h4>
+    </ion-slide>            
+  </ion-slide-box>
+  <!-- End Ionic Slider -->
+  </ion-content>
+</ion-view>

@@ -1,0 +1,48 @@
+<!-- Tinder Profile - refer to tinder.scss -->
+<ion-view view-title="Tinder Profile" hide-nav-bar="true">
+  <ion-content scroll="true" class="premium-profile-screen" ng-controller="TinderProfileCtrl">
+    <div class="bar">
+      <button class="button button-clear icon ion-ios-arrow-back" ui-sref="premiumappOne.cardSwipe"></button>
+      <h1 class="title">{{profileDetails.title}}</h1>
+      <button class="button button-clear icon ion-fireball" menu-toggle="right">
+        <span class="notification-bubble">8</span>
+      </button>
+    </div>
+    <div class="tinder-profile">
+
+    <!-- Slider Area - Propagate your profile images here -->
+    <div class="slider-clip" ng-if='profileDetails.sliderImages.length > 0'>
+      <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <ion-slide ng-repeat="image in profileDetails.sliderImages">
+          <img ng-src="{{image}}" src="{{image}}" preload-image default-image="img/demo/loader.svg" fallback-image="img/demo/profile-default.jpg" alt="">
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+    <div class="profile-details row">
+      <div class="col">
+        <h4><span class="bold">{{profileDetails.title}}</span></h4>
+        <h6>Location: {{profileDetails.location}}</h6>
+      </div>
+      <div class="col tinder-profile-actions">
+        <button class="button button-clear accept"><i class="icon ion-ios-heart"></i></button>
+        <button class="button button-clear reject"><i class="icon ion-android-cancel"></i></button>
+        <button class="button button-clear"><i class="icon ion-email"></i></button>
+      </div>
+    </div>
+    <div class="profile-content padding">
+      {{profileDetails.description}}
+    </div>
+    <h4 class="padding bold">Photo Gallery</h4>
+    <div class="profile-gallery row">
+      <div class="col-33"><img src="img/demo/profile-image-2.jpg" alt=""></div>
+      <div class="col-33"><img src="img/demo/profile-image-3.jpg" alt=""></div>
+      <div class="col-33"><img src="img/demo/profile-image-4.jpg" alt=""></div>
+      <div class="col-33"><img src="img/demo/profile-image-5.jpg" alt=""></div>
+      <div class="col-33"><img src="img/demo/profile-image-6.jpg" alt=""></div>
+      <div class="col-33"><img src="img/demo/profile-image-7.jpg" alt=""></div>
+    </div>
+
+
+  </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,40 @@
+<!-- Tinder Profile - refer to tinder.scss -->
+<ion-view view-title="Tinder Profile" hide-nav-bar="true">
+  <ion-content scroll="true" class="rubyonic-pane tinder-screen brand-base-background-color" ng-controller="TinderProfileCtrl">
+
+  <!-- Custom Navbar -->
+  <div class="bar bar-ruby-header bar-transparent">
+    <button class="button ruby-button-clear icon ion-navicon brand-base-text-color" menu-toggle="left">
+    	<span class="new-notification-bubble"></span>
+    </button>
+    <h1 class="title brand-base-text-color">Tinder Profile</h1>
+  </div>
+  <!-- End Custom Navbar -->
+  <div class="tinder-profile">
+
+  	<!-- Slider Area - Propagate your profile images here -->
+  	<div class="slider-clip" ng-if='profileDetails.sliderImages.length > 0'>
+  		<ion-slide-box on-slide-changed="slideHasChanged($index)">
+  		  <ion-slide ng-repeat="image in profileDetails.sliderImages">
+          <img ng-src="{{image}}" src="{{image}}" preload-image default-image="img/demo/loader.svg" fallback-image="img/demo/loader.jpg" alt="">
+        </ion-slide>
+  		</ion-slide-box>
+  	</div>
+  	<div class="profile-title padding">
+  		<h4 class="bold">{{profileDetails.title}}</h4>
+  		<div class="profile-actions">
+  			<button class="profile-button accept"><i class="ion-checkmark"></i></button>
+  			<button class="profile-button reject"><i class="ion-close-round"></i></button>
+  		</div>
+  	</div>
+    <div class="profile-details padding">
+      <i class="icon ion-ios-navigate"></i> Location: Manchester
+    </div>
+  	<div class="profile-content padding">
+  		{{profileDetails.description}}
+  	</div>
+
+
+  </div>
+  </ion-content>
+</ion-view>
