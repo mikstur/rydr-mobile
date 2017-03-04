@@ -13,10 +13,10 @@ angular.module('starter.controllers', ['ngSanitize'])
 
   })
 
-  .controller('WalkthroughCtrl', function ($scope, $state, $ionicSlideBoxDelegate) {
+  .controller('WalkthroughCtrl', function ($scope, $state, $cordovaToast, $ionicSlideBoxDelegate) {
 
     $scope.slideIndex = 0;
-    $scope.slideCount = 3;  //$ionicSlideBoxDelegate.slidesCount() currently returns underfined. Looking into this
+    $scope.slideCount = 4;  //$ionicSlideBoxDelegate.slidesCount() currently returns underfined. Looking into this
     $scope.slideCount = $scope.slideCount - 1;
 
     $scope.leftButton = {

@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 
 
-angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-image', 'ionic.contrib.ui.tinderCards', 'ngResource', 'starter.loaders'])
+angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-image', 'ionic.contrib.ui.tinderCards', 'ngResource', 'starter.loaders', 'ion-datetime-picker','ngCordova'])
 
   .run(function ($ionicPlatform) {
     // $cordovaStatusbar.hide();

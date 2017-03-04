@@ -2,24 +2,8 @@
 <ion-view view-title="Walkthrough" hide-nav-bar="true">
   <ion-content scroll="false" class="walkthrough-premiumone-screen">
 
-  <!-- 
-  Custom Navbar. Prev/Next Text and Actions change according 
-  to which slide is active. Refer to 
-  www/js/controllers.js -> WalkthroughCtrl
-  -->
-  <div class="walkthrough-bar bar-bg-clear">
-    <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="leftButton.show" ng-click="leftButton.tapFxn()">
-    	{{leftButton.text}}
-    </button>
-    <!-- <h1 class="title walkthrough-text-color-{{slideIndex}}">Tinder Style 4</h1> -->
-    <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="rightButton.show" ng-click="rightButton.tapFxn()">
-      {{rightButton.text}}
-    </button>
-    <!-- <button ng-show="lastSlide">Start App</button> -->
-  </div>
-  <!-- End Custom Navbar -->
-	
-	<!-- 
+
+    <!-- 
   #### Ionic Slider Section #### 
 
   We're using the slider's index to target 
@@ -27,35 +11,134 @@
   (and its animated background-color change)
 
   -->
-	<ion-slide-box on-slide-changed="slideChanged(index)" class="animate-bg-{{slideIndex}}">
 
-    <!-- Slide -->
-    <ion-slide>
-      <h2 class="walkthrough-text-color-{{slideIndex}}">Tinderonic</h2>
-      <div class="slider-img-logo">
-        <img src="img/demo/logo.png">
-      </div>
-      <h4 class="walkthrough-text-color-{{slideIndex}}">Build a Tinder-like app in minutes. Not hours/days</h4>
-    </ion-slide>
+    <!--Need to disable scrolling -->
 
-    <!-- Slide -->
-    <ion-slide>
-      <h2 class="walkthrough-text-color-{{slideIndex}}">AJAX/JSON Support</h2>
-      <div class="slider-img-logo">
-        <img src="img/demo/walkthrough-async-logo.png">
-      </div>
-      <h4 class="walkthrough-text-color-{{slideIndex}}">Match your Endpoints to our API-Client and JSON and you're good to go</h4>
-    </ion-slide>
+    <ion-slide-box on-slide-changed="slideChanged(index)" class="animate-bg-{{slideIndex}}">
 
-    <!-- Slide -->
-    <ion-slide>
-      <h2 class="walkthrough-text-color-{{slideIndex}}">Premium Templates</h2>
-      <div class="slider-img-logo">
-        <img src="img/demo/walkthrough-design.png">
-      </div>
-      <h4 class="walkthrough-text-color-{{slideIndex}}">Use the basic styles and its color manager. Or use our brand new templatepack for tinderonic</h4>
-    </ion-slide>            
-  </ion-slide-box>
-  <!-- End Ionic Slider -->
+      <!-- Slide -->
+      <ion-slide>
+        <h2 class="walkthrough-text-color-{{slideIndex}}">Rydr</h2>
+        <div class="slider-img-logo">
+          <img src="img/demo/environment.png">
+        </div>
+        <h4 class="walkthrough-text-color-{{slideIndex}}">Travel together. Meet new people. </br> Turn your boring commute into an adventure. </h4>
+      </ion-slide>
+
+      <!-- Slide -->
+      <ion-slide>
+        <h2 class="walkthrough-text-color-0">Choose your destination</h2>
+        <div class="slider-img-logo">
+          <img src="img/demo/spacexx.png">
+        </div>
+
+        <!--auto fill here later-->
+        <div class="list list-inset">
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Where can we take you?">
+          </label>
+        </div>
+        <button>
+           <div class="bar bar-footer">
+            <a class="pull-right button icon-right ion-chevron-right button-clear button-dark">Next</a>
+         </div>
+         </button>
+        <h4 class="walkthrough-text-color-{{slideIndex}}">
+          Choose your destination. We'll take care of the journey!
+        </h4>
+      </ion-slide>
+
+      <!-- Slide -->
+      <ion-slide>
+        <h2 class="walkthrough-text-color-{{slideIndex}}">When do you wanna head out?</h2>
+        <!--<div class="slider-img-logo">
+          <img src="img/demo/walkthrough-design.png">
+        </div>-->
+
+        
+        <button ion-datetime-picker ng-model="datetimeValue" class="button button-full button-royal">
+         Select date and time
+        </button>
+
+        <h4 class="walkthrough-text-color-{{slideIndex}}">
+          Select a date and time for your trip. Rydr will look for people going to the same area at the same time and you can then
+          check out your trip buddies!
+        </h4>
+
+        <button>
+           <div class="bar bar-footer">
+            <a class="pull-right button icon-right ion-chevron-right button-clear button-dark">Next</a>
+         </div>
+         </button>
+
+
+      </ion-slide>
+      <!-- Slide -->
+
+      <!--
+        <ion-slide>
+        <h2 class="walkthrough-text-color-{{slideIndex}}">Swipe & Find a Trip buddy</h2>
+        <div class="slider-img-logo">
+          <img src="img/demo/tinder-match.png">
+        </div>
+        <button class="button button-full button-energized">
+          Take me places! 
+        </button>
+
+      </ion-slide>
+      -->
+
+      <!-- Slide -->
+
+      <ion-slide>
+        <h2 class="walkthrough-text-color-{{slideIndex}}" style="padding-bottom:10vh;">How will you make this trip? </h2>
+        <table class="walkthroughTable">
+          <thead>
+            <tr>
+              <th><h3>In a Car</h3></th>
+              <th><h3>With Rydr</h3></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><h4>Alone!</h4></td>
+              <td><h4>Making friends</h4></td>
+            </tr>
+            <tr>
+              <td><h4>Spending R32,000 in 6 months</h4></td>
+              <td><h4>Spending R4,000 in 6 months</h4></td>
+            </tr>
+            <tr>
+              <td><h4>With Zero chances of networking</h4></td>
+              <td><h4>Meeting your next employer</h4></td>
+            </tr>
+            <tr>
+              <td><h4>Hanging out with that candy wrapper from last month</h4></td>
+              <td><h4>Meeting your future best friend</h4></td>
+            </tr>
+            <tr>
+              <td><h4>
+                Wondering about that bunch of coins you can't reach
+              </h4></td>
+              <td><h4>
+                Telling an investor about your startup idea
+              </h4></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button class="button button-clear pull-right">
+          <a  style="background-color: lightblue" class="facebook-sign-in button button-block">Login with Facebook</a>
+        </button>
+
+        <!--<button class="button button-full button-energized">
+          Take me places! 
+        </button>-->
+
+      </ion-slide>
+
+    </ion-slide-box>
+    <!-- End Ionic Slider -->
   </ion-content>
 </ion-view>
