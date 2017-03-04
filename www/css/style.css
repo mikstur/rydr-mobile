@@ -4,6 +4,10 @@
 .floatRight{
     float:right;
 }
+
+.floatLeft {
+    float:left;
+}
 .centerItem {
     text-align: center;
 }
@@ -33,4 +37,53 @@
 .addTripImage {
     height: 30%;
     width:100%;
+}
+
+.pos-relat {
+    position: relative;
+}
+.noborder {
+    border:none;
+}
+
+.matched1 {
+    top: 5vh;
+    right: 3vw;
+    margin-top:-5vh;
+}
+
+.matched2 {
+    bottom: 2vh;
+    left: 3vw;
+}
+
+.rydr-input  {
+    background-color:transparent !important;
+}
+
+.clear {
+    clear:both;
+}
+
+.width85 {
+    width: 85% !important;
+}
+
+.width95 {
+    width: 95%;
+}
+
+.matchedQ {
+    color: black;
+    font-size: 1.3em;
+}
+
+.subhead {
+    background-color: lightgreen;
+}
+
+.preQ {
+    position:relative;
+    top:4vh;
+    padding-left:10px;
 }

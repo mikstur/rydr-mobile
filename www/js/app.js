@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 
 
-angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-image', 'ionic.contrib.ui.tinderCards', 'ngResource', 'starter.loaders', 'ion-datetime-picker','ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-image', 'ionic.contrib.ui.tinderCards', 'ngResource', 'starter.loaders', 'ion-datetime-picker','ngCordova','ion-floating-menu'])
 
   .run(function ($ionicPlatform) {
     // $cordovaStatusbar.hide();
@@ -154,6 +154,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-imag
           'menuContent': {
             templateUrl: "app/trips/trips-list.html",
             controller: "TripsListCtrl"
+          }
+        }
+      })
+
+      .state('premiumappOne.matched', {
+        url: "/matched",
+        views: {
+          'menuContent': {
+            templateUrl: "app/matched/matched.html",
+            controller: "MatchedCtrl"
           }
         }
       })
