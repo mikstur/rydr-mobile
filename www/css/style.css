@@ -21,3 +21,16 @@
 .cardHeadSmall {
     font-size: 1.1em !important;
 }
+
+.interest{
+    margin-top:15px;
+    margin-right:10px;
+}
+.mapTripImage {
+    width:75%;
+}
+
+.addTripImage {
+    height: 30%;
+    width:100%;
+}
