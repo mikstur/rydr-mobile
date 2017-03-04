@@ -1,3 +1,23 @@
 .walkthroughTable > td{
     text-align: left
 }
+.floatRight{
+    float:right;
+}
+.centerItem {
+    text-align: center;
+}
+
+.logoutButton{
+    padding-left:10vw;
+    padding-right:10vw;
+}
+
+.cardHead {
+    color: red;
+    font-size: 1.4em;
+}
+
+.cardHeadSmall {
+    font-size: 1.1em !important;
+}

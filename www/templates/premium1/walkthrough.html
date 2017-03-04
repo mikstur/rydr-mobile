@@ -2,7 +2,24 @@
 <ion-view view-title="Walkthrough" hide-nav-bar="true">
   <ion-content scroll="false" class="walkthrough-premiumone-screen">
 
+    <!-- 		 +
+  Custom Navbar. Prev/Next Text and Actions change according 		 +    <!-- 
+  to which slide is active. Refer to 		
+  www/js/controllers.js -> WalkthroughCtrl		
+  -->
+    <div class="walkthrough-bar bar-bg-clear">
+      <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="leftButton.show" ng-click="leftButton.tapFxn()">		
+ 	{{leftButton.text}}		
+     </button>
+      <!-- <h1 class="title walkthrough-text-color-{{slideIndex}}">Tinder Style 4</h1> -->
+      <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="rightButton.show" ng-click="rightButton.tapFxn()">		
+      {{rightButton.text}}		
+    </button>
+      <!-- <button ng-show="lastSlide">Start App</button> -->
+    </div>
+    <!-- End Custom Navbar -->
 
+    <!-- 
     <!-- 
   #### Ionic Slider Section #### 
 
@@ -56,7 +73,7 @@
           <img src="img/demo/walkthrough-design.png">
         </div>-->
 
-        
+
         <button ion-datetime-picker ng-model="datetimeValue" class="button button-full button-royal">
          Select date and time
         </button>
@@ -96,36 +113,60 @@
         <table class="walkthroughTable">
           <thead>
             <tr>
-              <th><h3>In a Car</h3></th>
-              <th><h3>With Rydr</h3></th>
+              <th>
+                <h3>In a Car</h3>
+              </th>
+              <th>
+                <h3>With Rydr</h3>
+              </th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr>
-              <td><h4>Alone!</h4></td>
-              <td><h4>Making friends</h4></td>
-            </tr>
-            <tr>
-              <td><h4>Spending R32,000 in 6 months</h4></td>
-              <td><h4>Spending R4,000 in 6 months</h4></td>
-            </tr>
-            <tr>
-              <td><h4>With Zero chances of networking</h4></td>
-              <td><h4>Meeting your next employer</h4></td>
-            </tr>
-            <tr>
-              <td><h4>Hanging out with that candy wrapper from last month</h4></td>
-              <td><h4>Meeting your future best friend</h4></td>
+              <td>
+                <h4>Alone!</h4>
+              </td>
+              <td>
+                <h4>Making friends</h4>
+              </td>
             </tr>
             <tr>
-              <td><h4>
-                Wondering about that bunch of coins you can't reach
-              </h4></td>
-              <td><h4>
-                Telling an investor about your startup idea
-              </h4></td>
+              <td>
+                <h4>Spending R32,000 in 6 months</h4>
+              </td>
+              <td>
+                <h4>Spending R4,000 in 6 months</h4>
+              </td>
             </tr>
-            </tbody>
+            <tr>
+              <td>
+                <h4>With Zero chances of networking</h4>
+              </td>
+              <td>
+                <h4>Meeting your next employer</h4>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Hanging out with that candy wrapper from last month</h4>
+              </td>
+              <td>
+                <h4>Meeting your future best friend</h4>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>
+                  Wondering about that bunch of coins you can't reach
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  Telling an investor about your startup idea
+                </h4>
+              </td>
+            </tr>
+          </tbody>
         </table>
 
         <button class="button button-clear pull-right">

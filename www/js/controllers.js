@@ -103,27 +103,27 @@ angular.module('starter.controllers', ['ngSanitize'])
   .controller('TinderProfileCtrl', function ($scope, ApiClient, LoaderService, $stateParams) {
 
     // Run the LoaderService ("Loading....")
-    LoaderService.show()
+    //LoaderService.show()
 
     $scope.profileID = $stateParams.profileID;
     console.log('profileID is = ' + $scope.profileID);
-    $scope.ajaxRequest = ApiClient.ProfileDetails.get({ profileID: $scope.profileID });
-    $scope.ajaxRequest.$promise.then(function () {
-      // If API Call is successful
-      LoaderService.hide();
-      $scope.profileDetails = $scope.ajaxRequest;
-    },
-      //If API call fails
-      function () {
-        var ErrorMessage = 'Api Call not successful. Check your apiBaseUrl (www/api-client/services/card-api-service.js) or ensure your proxy is well configured';
-        console.error(ErrorMessage);
-        LoaderService.errorLoading('Something went wrong. Please try again later');
+    // $scope.ajaxRequest = ApiClient.ProfileDetails.get({ profileID: $scope.profileID });
+    // $scope.ajaxRequest.$promise.then(function () {
+    //   // If API Call is successful
+    //   LoaderService.hide();
+    //   $scope.profileDetails = $scope.ajaxRequest;
+    // },
+    //   //If API call fails
+    //   function () {
+    //     var ErrorMessage = 'Api Call not successful. Check your apiBaseUrl (www/api-client/services/card-api-service.js) or ensure your proxy is well configured';
+    //     console.error(ErrorMessage);
+    //     LoaderService.errorLoading('Something went wrong. Please try again later');
 
-        //Set Deck to empty to enable the user reload the cards
-        $scope.deckIsEmpty = true;
-      }
+    //     //Set Deck to empty to enable the user reload the cards
+    //     $scope.deckIsEmpty = true;
+    //   }
 
-    )
+    // )
 
   })
 

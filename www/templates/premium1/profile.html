@@ -10,29 +10,30 @@
     </div>
     <div class="tinder-profile">
 
-    <!-- Slider Area - Propagate your profile images here -->
-    <div class="slider-clip" ng-if='profileDetails.sliderImages.length > 0'>
-      <ion-slide-box on-slide-changed="slideHasChanged($index)">
-        <ion-slide ng-repeat="image in profileDetails.sliderImages">
-          <img ng-src="{{image}}" src="{{image}}" preload-image default-image="img/demo/loader.svg" fallback-image="img/demo/profile-default.jpg" alt="">
-        </ion-slide>
-      </ion-slide-box>
-    </div>
-    <div class="profile-details row">
-      <div class="col">
-        <h4><span class="bold">{{profileDetails.title}}</span></h4>
-        <h6>Location: {{profileDetails.location}}</h6>
+      <!-- Slider Area - Propagate your profile images here -->
+      <div class="slider-clip">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+          <ion-slide>
+            <img ng-src="img/demo/profile-default.jpg" src="img/demo/profile-default.jpg">
+          </ion-slide>
+        </ion-slide-box>
       </div>
-      <div class="col tinder-profile-actions">
-        <button class="button button-clear accept"><i class="icon ion-ios-heart"></i></button>
-        <button class="button button-clear reject"><i class="icon ion-android-cancel"></i></button>
-        <button class="button button-clear"><i class="icon ion-email"></i></button>
+      <div class="profile-details row">
+        <div class="col">
+          <h4><span class="bold">Nadim Rifai</span></h4>
+          <h6>Location: Cape Town</h6>
+        </div>
+        <div class="col tinder-profile-actions">
+          <button class="button button-clear accept"><i class="icon ion-ios-heart"></i></button>
+          <button class="button button-clear reject"><i class="icon ion-android-cancel"></i></button>
+          <button class="button button-clear"><i class="icon ion-email"></i></button>
+        </div>
       </div>
-    </div>
-    <div class="profile-content padding">
-      {{profileDetails.description}}
-    </div>
-    <h4 class="padding bold">Photo Gallery</h4>
+      <div class="profile-content padding">
+        TEST DESCRIPTION
+      </div>
+      <!--
+      <h4 class="padding bold">Photo Gallery</h4>
     <div class="profile-gallery row">
       <div class="col-33"><img src="img/demo/profile-image-2.jpg" alt=""></div>
       <div class="col-33"><img src="img/demo/profile-image-3.jpg" alt=""></div>
@@ -41,8 +42,69 @@
       <div class="col-33"><img src="img/demo/profile-image-6.jpg" alt=""></div>
       <div class="col-33"><img src="img/demo/profile-image-7.jpg" alt=""></div>
     </div>
+-->
+
+      <div class="card">
+        <div class="item item-divider cardHead">
+          Show Me
+        </div>
+        <div class="item item-text-wrap">
+          Men
+          <label class="floatRight toggle">
+   <input type="checkbox">
+   <div class="togglePullRight track">
+     <div class="handle"></div>
+   </div>
+</label>
+        </div>
+        <div class="item item-text-wrap">
+          Women
+          <label class="floatRight toggle">
+   <input type="checkbox">
+   <div class="track">
+     <div class="handle"></div>
+   </div>
+</label>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <div class="item item-divider cardHead">
+          Search Distance
+          <h4 class="floatRight cardHeadSmall">12km</h4>
+        </div>
+        <div class="item range">
+          <i class="icon ion-ios-location-outline"></i>
+          <input type="range" name="distance">
+          <i class="icon ion-ios-location"></i>
+        </div>
+      </div>
 
 
-  </div>
+      <div class="card">
+        <div class="item item-divider cardHead">Show Ages
+          <h4 class="floatRight cardHeadSmall">18-29</h4>
+        </div>
+        <div class="item range">
+          <i class="icon ion-social-tux"></i>18
+          <input type="range" min="18" name="distance">
+          <i class="icon ion-android-walk"></i>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <div class="item centerItem">
+          <button class="button button-medium button-stable logoutButton">
+            <i class="icon ion-log-out"></i>  Log Out
+        </button>
+
+        </div>
+
+
+      </div>
+
+    </div>
   </ion-content>
 </ion-view>
