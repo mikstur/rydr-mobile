@@ -3,10 +3,33 @@
   <ion-content scroll="false" class="walkthrough-premiumone-screen">
 
     <!-- 		 +
-  Custom Navbar. Prev/Next Text and Actions change according 		 +    <!-- 
+  Custom Navbar. Prev/Next Text and Actions change according 		 + 
   to which slide is active. Refer to 		
   www/js/controllers.js -> WalkthroughCtrl		
   -->
+    <!--
+    <div class="walkthrough-bar bar-bg-clear">
+      
+      <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="leftButton.show" ng-click="leftButton.tapFxn()">		
+ 	{{leftButton.text}}		
+     </button>
+     
+      <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="rightButton.show" ng-click="rightButton.tapFxn()">		
+      {{rightButton.text}}		
+    </button>
+    </div>
+    -->
+    <!-- End Custom Navbar -->
+
+    <!--
+  #### Ionic Slider Section #### 
+
+  We're using the slider's index to target 
+  the css styling for each slide 
+  (and its animated background-color change)
+
+  -->
+
     <div class="walkthrough-bar bar-bg-clear">
       <button class="button walkthrough-text-color-{{slideIndex}}" ng-show="leftButton.show" ng-click="leftButton.tapFxn()">		
  	{{leftButton.text}}		
@@ -17,17 +40,6 @@
     </button>
       <!-- <button ng-show="lastSlide">Start App</button> -->
     </div>
-    <!-- End Custom Navbar -->
-
-    <!-- 
-    <!-- 
-  #### Ionic Slider Section #### 
-
-  We're using the slider's index to target 
-  the css styling for each slide 
-  (and its animated background-color change)
-
-  -->
 
     <!--Need to disable scrolling -->
 
@@ -53,14 +65,9 @@
         <div class="list list-inset">
           <label class="item item-input">
             <i class="icon ion-search placeholder-icon"></i>
-            <ion-google-place placeholder="EWhere can we take you?" ng-model="destination" search-placeholder="Enter an address, Apt# and ZIP"/>
+            <input type="text" ng-model="destination.address" placeholder="Where can we take you?" ng-change="addressChanged()"/>
           </label>
         </div>
-        <button>
-           <div class="bar bar-footer">
-            <a class="pull-right button icon-right ion-chevron-right button-clear button-dark">Next</a>
-         </div>
-         </button>
         <h4 class="walkthrough-text-color-{{slideIndex}}">
           Choose your destination. We'll take care of the journey!
         </h4>
@@ -73,8 +80,7 @@
           <img src="img/demo/walkthrough-design.png">
         </div>-->
 
-
-        <button ion-datetime-picker ng-model="datetimeValue" class="button button-full button-royal">
+        <button ion-datetime-picker ng-model="departure.time" class="button button-full button-royal">
          Select date and time
         </button>
 
@@ -82,13 +88,6 @@
           Select a date and time for your trip. Rydr will look for people going to the same area at the same time and you can then
           check out your trip buddies!
         </h4>
-
-        <button>
-           <div class="bar bar-footer">
-            <a class="pull-right button icon-right ion-chevron-right button-clear button-dark">Next</a>
-         </div>
-         </button>
-
 
       </ion-slide>
       <!-- Slide -->
@@ -109,7 +108,7 @@
       <!-- Slide -->
 
       <ion-slide>
-        <h2 class="walkthrough-text-color-{{slideIndex}}" style="padding-bottom:10vh;">How will you make this trip? </h2>
+        <h2 class="walkthrough-text-color-{{slideIndex}}" style="padding-bottom:2vh;">How will you make this trip? </h2>
         <table class="walkthroughTable">
           <thead>
             <tr>
@@ -132,10 +131,10 @@
             </tr>
             <tr>
               <td>
-                <h4>Spending R32,000 in 6 months</h4>
+                <h4>Spending <b>{{cost.car.cost | currency : 'R' : 2}}</b> in 6 months</h4>
               </td>
               <td>
-                <h4>Spending R4,000 in 6 months</h4>
+                <h4>Spending <b>{{cost.transit.cost | currency : 'R' : 2}}</b> in 6 months</h4>
               </td>
             </tr>
             <tr>
@@ -169,7 +168,7 @@
           </tbody>
         </table>
 
-        <button class="button button-clear pull-right" ng-click="navToRegistration()" >
+        <button class="button button-clear pull-right" ng-click="navToRegistration()">
           <a style="background-color: lightblue" class="facebook-sign-in button button-block">Login with Facebook</a>
         </button>
 

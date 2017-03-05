@@ -1,4 +1,4 @@
-<ion-view view-title="Account">
+<ion-view view-title="Matched">
 
     <ion-content>
 
@@ -12,7 +12,7 @@
         </div>
         <div class="list">
             <div class="matched1 pos-relat item-avatar">
-                <img src="img/demo/profile-image-3.jpg">
+                <img src="{{otherAUM.profilePictureUrl}}">
             </div>
         </div>
         <div class="noborder item item-image">
@@ -20,17 +20,17 @@
         </div>
         <div class="list">
             <div class="floatRight matched2 pos-relat pull-right item-avatar">
-                <img src="img/demo/profile-image-2.jpg">
+                <img src="{{currentAUM.profilePictureUrl}}">
             </div>
         </div>
 
         <h6 class="preQ">One more thing!</h6>
-            <div id="howfind" class="list">
-                <label class="rydr-input width95 clear item item-input item-stacked-label">
-                    <span class="matchedQ input-label">How can Miki find you? </span>
+        <div id="howfind" class="list">
+            <label class="rydr-input width95 clear item item-input item-stacked-label">
+                    <span class="matchedQ input-label">How can {{otherAUM.firstname}} find you? </span>
                     <input class="width85" type="text" placeholder="Wearing a blue shirt..Carrying a skateboard..etc..">
                 </label>
-             </div>
+        </div>
 
 
     </ion-content>

@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-    .controller('RegistrationCtrl', function ($scope, $state, LoopBackAuth) {
+    .controller('RegistrationCtrl', function ($scope, $state, LoopBackAuth, Trip) {
 
         $scope.$on('$ionicView.enter', function (e) {
             if (window.cordova) {
@@ -24,7 +24,11 @@ angular.module('starter.controllers')
 
                             ref.close();
 
-                            $state.go("premiumappOne.tinder-profile", { userId: jsonUser.user.id });
+                            Trip.updateAttributes({
+                                id: localStorage.getItem("tripId")
+                            }, { userId: jsonUser.user.id }, function (response, responseHeaders) {
+                                $state.go("premiumappOne.tinder-profile", { userId: jsonUser.user.id });
+                            });
                         }
                     );
                 });
@@ -32,7 +36,12 @@ angular.module('starter.controllers')
                 LoopBackAuth.setUser("jwbx6519FGxkxOy4bnM4epmK76rNOHk9eZPVeUnaLQdmz7FgcUWHosFarSUTbFXY", 54, null);
                 LoopBackAuth.rememberMe = true;
                 LoopBackAuth.save();
-                $state.go("premiumappOne.tinder-profile", { userId: 54 });
+
+                Trip.updateAttributes({
+                    id: localStorage.getItem("tripId")
+                }, { userId: 54 }, function (response, responseHeaders) {
+                    $state.go("premiumappOne.tinder-profile", { userId: 54 });
+                });
             }
         });
 

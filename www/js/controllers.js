@@ -17,21 +17,29 @@ angular.module('starter.controllers', ['ngSanitize'])
 
   })
 
-  .controller('WalkthroughCtrl', function ($rootScope, $scope, $state, $cordovaToast, $ionicSlideBoxDelegate, RbgUser) {
+  .controller('WalkthroughCtrl', function ($rootScope, $scope, $state, $cordovaToast, LoaderService, $ionicSlideBoxDelegate, RbgUser, Trip, $http) {
 
     $scope.origin = {
       lat: 0,
       lng: 0
     };
-
-    $scope.destination = {};
+    $scope.destination = {
+      address: ""
+    };
+    $scope.dest = {
+      lat: 0,
+      lng: 0
+    };
+    $scope.departure = {
+      time: new Date()
+    };
 
     $scope.$on('$ionicView.enter', function (e) {
       RbgUser.me({}, function (response, responseHeaders) {
         $rootScope.user = response.user;
-        $state.go("premiumappOne.tinder-profile", { userId: $rootScope.user.id });
+        //$state.go("premiumappOne.tinder-profile", { userId: $rootScope.user.id });
       }, function (httpResponse) {
-        //$state.go("premiumappOne.walkthrough");
+        $state.go("premiumappOne.walkthrough");
       });
 
       if (window.cordova) {
@@ -45,12 +53,68 @@ angular.module('starter.controllers', ['ngSanitize'])
           lng: 18.4149476
         };
       }
-
     });
 
+    $scope.addressChanged = function () {
+      $http({
+        method: 'GET',
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDb2XNAnUfu-VlImoLHbA5ccpcEIkOimQc&address=' + encodeURI($scope.destination.address)
+      }).then(function successCallback(response) {
+        try {
+          $scope.dest.lat = response.data.results[0].geometry.location.lat;
+          $scope.dest.lng = response.data.results[0].geometry.location.lng;
+        } catch (e) {
+
+        }
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    };
+
     $scope.slideIndex = 0;
-    $scope.slideCount = 4;  //$ionicSlideBoxDelegate.slidesCount() currently returns underfined. Looking into this
+    $scope.slideCount = 4;
     $scope.slideCount = $scope.slideCount - 1;
+
+    $scope.navToRegistration = function () {
+      $state.go('premiumappOne.registration');
+    };
+    $scope.createTrip = function () {
+      if (!$scope.dest.lat || !$scope.dest.lng) {
+        return;
+      }
+
+      Trip.create({
+        origin: $scope.origin,
+        destination: $scope.dest
+      }, function (response, responseHeaders) {
+        localStorage.setItem("tripId", response.tripId);
+        $scope.next();
+      });
+    };
+    $scope.next = function () {
+      $ionicSlideBoxDelegate.next();
+    };
+    $scope.previous = function () {
+      $ionicSlideBoxDelegate.previous();
+    };
+
+    $scope.createAdventure = function (departureTime) {
+      LoaderService.show();
+      Trip.createAdventure({
+        tripId: localStorage.getItem("tripId")
+      }, {
+          departureTime: departureTime.toISOString()
+        }, function (response, responseHeaders) {
+          Trip.costs({
+            tripId: localStorage.getItem("tripId"),
+            departureTime: departureTime
+          }, function (response, responseHeaders) {
+            $scope.cost = response.cost;
+            $scope.next();
+            LoaderService.hide();
+          });
+        })
+    }
 
     $scope.leftButton = {
       text: 'Previous',
@@ -70,18 +134,6 @@ angular.module('starter.controllers', ['ngSanitize'])
       }
     }
 
-    $scope.navToRegistration = function () {
-      $state.go('premiumappOne.registration');
-    }
-
-    $scope.next = function () {
-      $ionicSlideBoxDelegate.next();
-    };
-    $scope.previous = function () {
-      $ionicSlideBoxDelegate.previous();
-    };
-
-    /*
     // Called each time the slide changes
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
@@ -91,8 +143,17 @@ angular.module('starter.controllers', ['ngSanitize'])
         $scope.leftButton.show = true;
         $scope.rightButton.show = true;
         $scope.rightButton.text = 'Next';
-        $scope.rightButton.tapFxn = function () {
-          $scope.next();
+
+        if ($scope.slideIndex == 1) {
+          $scope.rightButton.tapFxn = function () {
+            $scope.createTrip();
+          }
+        }
+
+        if ($scope.slideIndex == 2) {
+          $scope.rightButton.tapFxn = function () {
+            $scope.createAdventure($scope.departure.time);
+          }
         }
       }
 
@@ -101,7 +162,10 @@ angular.module('starter.controllers', ['ngSanitize'])
         $scope.rightButton.show = true;
       }
 
+
       if ($scope.slideIndex == $scope.slideCount) {
+        $scope.rightButton.show = false;
+        /*
         console.log('last slide');
         $scope.rightButton.text = 'Go to App';
 
@@ -109,10 +173,11 @@ angular.module('starter.controllers', ['ngSanitize'])
           console.log('function to launch app success!!!');
           $scope.startApp();
         }
+        */
       }
 
     };
-    */
+
   })
 
 
@@ -330,7 +395,7 @@ angular.module('starter.controllers', ['ngSanitize'])
         console.log('deck is empty!');
       }
 
-
+      console.log($scope.cards);
       //we'll use the cardCounter as the index in our cloned array for that card's data
       $scope.swypedCard = $scope.cardDataArray[$scope.cardCounter];
 
@@ -375,23 +440,71 @@ angular.module('starter.controllers', ['ngSanitize'])
     $scope.reload()
   })
 
-  .controller('LocalJSONCtrl', function ($scope, ApiClient, LoaderService) {
+  .controller('LocalJSONCtrl', function ($scope, $state, ApiClient, LoaderService, RbgUser, Trip, AdventureUserMapping, TripSwipe) {
     console.log('Local JSON CARDS CTRL Initiated. Pulling data from www/json');
 
     $scope.cardsControl = {};
+    $scope.cards = [];
     //we'll need a variable to tell us if the deck is empty or full. Default is false
     // $scope.deckIsEmpty = false;
+
+    var checkMatched = function () {
+      RbgUser.me({}, function (meResponse, responseHeaders) {
+        Trip.getAdventure({ tripId: localStorage.getItem("tripId") }, function (adventureResponse, responseHeaders) {
+          AdventureUserMapping.find({
+            filter: {
+              where: {
+                adventureId: adventureResponse.adventure.adventureId
+              }
+            }
+          }, function (response, responseHeaders) {
+            if (response.length == 2) {
+              $state.go('premiumappOne.matched');
+            }
+          });
+        });
+      });
+    };
 
     //Reloading the cards.
     $scope.reload = function () {
 
-      // Run the LoaderService ("Loading....")
-      LoaderService.show()
+      checkMatched();
 
+      // Run the LoaderService ("Loading....")
+      LoaderService.show();
+      /*
+         {
+      "image":"http:\/\/audacitus.com\/tinderonic-json\/img\/tinder-full-pic-2.jpg?1387",
+      "title":"Tonia Gambles",
+      "location":"London",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      "vipStatus":true,
+      "profileID":"2"
+    },
+    */
+      Trip.getPotentialAdventurers({
+        tripId: localStorage.getItem("tripId")
+      }, function (response, responseHeaders) {
+        console.log(response);
+        LoaderService.hide();
+        response.potentialAdventurers.forEach(function (pa) {
+          $scope.cards.push({
+            image: pa.user.profilePictureUrl,
+            title: pa.user.firstname + " " + pa.user.lastname,
+            location: "South Africa",
+            tripId: pa.tripId
+          });
+        });
+
+        $scope.cardCounter = $scope.cards.length;
+      });
+
+      /*
       //We're making an ajax request to an endpoint giving us the json.
       //Refer to www/api-client/services/card-api-servie.js
       $scope.ajaxRequest = ApiClient.LocalJSONCards.query();
-
+    
       // If promise is successful, attach json to cardTypes variable
       $scope.ajaxRequest.$promise.then(function () {
         // Function for successful api call
@@ -399,36 +512,37 @@ angular.module('starter.controllers', ['ngSanitize'])
         LoaderService.hide();
         cardTypes = $scope.ajaxRequest;
         console.log(cardTypes);
-
+    
         $scope.cards = Array.prototype.slice.call(cardTypes, 0);
-
+    
         //we'll need to have a counter for the cards deck
         $scope.cardCounter = $scope.cards.length;
-
+    
         //we'll need a variable to tell us if the deck is empty or full. since we're reloading, default is false
         // $scope.deckIsEmpty = false;
-
+    
         //we'll clone our $scope.cards for our own custom functions (like counting and exposing card data)
         $scope.cardDataArray = $scope.cards.slice(0);
-
+    
         //If a card is swyped, its details will always be here. if we are resetting/updating the stack, 
         // this variable will be reset. refer to the $scope.exposeSwypedCard function
         $scope.swypedCard = null;
-
+    
         // debug data
         console.log('cards in deck: ' + $scope.cards.length);
-
+    
       },
         // Function for error handling
         function () {
           // var ErrorMessage = 'Api Call not successful. Check your apiBaseUrl (www/api-client/services/card-api-service.js) or ensure your proxy is well configured';
           // console.error(ErrorMessage);
           LoaderService.errorLoading('Something went wrong. Please try again later');
-
+    
           //Set Deck to empty to enable the user reload the cards
           $scope.deckIsEmpty = true;
         }
       )
+      */
 
     }
 
@@ -443,13 +557,22 @@ angular.module('starter.controllers', ['ngSanitize'])
         console.log('deck is empty!');
       }
 
-
+      console.log($scope.cards);
       //we'll use the cardCounter as the index in our cloned array for that card's data
-      $scope.swypedCard = $scope.cardDataArray[$scope.cardCounter];
+      $scope.swypedCard = $scope.cards[$scope.cardCounter];
 
 
       //output to console. use to your preference (return it or use the $scope.swypedCard variable itself)
-      console.log($scope.swypedCard);
+      console.log("Swiped card: ", $scope.swypedCard);
+
+      TripSwipe.swipe({}, {
+        tripId1: localStorage.getItem("tripId"),
+        tripId2: $scope.swypedCard.tripId
+      }, function (response, responseHeader) {
+        if (response.matched) {
+          $state.go('premiumappOne.matched');
+        }
+      });
     }
 
     //Takes out the swiped card data from the original array $scope.cards
@@ -483,6 +606,16 @@ angular.module('starter.controllers', ['ngSanitize'])
     $scope.cardSwipedRight = function (index) {
       console.log('RIGHT SWIPE');
       $scope.exposeSwypedCard();
+      /*
+      TripSwipe.swipe({}, {
+        tripId1: localStorage.getItem("tripId"),
+        tripId2: $scope.cards[index].tripId
+      }, function (response, responseHeader) {
+        if (response.matched) {
+          $state.go('premiumappOne.matched');
+        }
+      });
+      */
     };
 
     $scope.reload()

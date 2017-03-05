@@ -5,16 +5,18 @@
   <!-- Custom Navbar -->
   <div class="bar">
     <button class="button button-clear icon ion-navicon" menu-toggle="left"></button>
-    <h1 class="title"><img src="img/demo/tinderonic-logo-header.png"></h1>
-    <button class="button button-clear icon ion-fireball" menu-toggle="right">
+    <h1 class="title"><!--<img src="img/demo/tinderonic-logo-header.png">-->Rydr</h1>
+    <!--
+		<button class="button button-clear icon ion-fireball" menu-toggle="right">
     	<span class="notification-bubble">8</span>
     </button>
+		-->
   </div>
   <!-- End Custom Navbar -->
 	
 	<!-- Swipe Card Section -->
 	<div ng-controller="LocalJSONCtrl">
-	<div class="card-deck-message ng-cloak ng-hide" ng-cloak ng-show="deckIsEmpty">
+	<div class="card-deck-message ng-cloak ng-hide" ng-cloak ng-show="cards.length == 0">
 			<h2 class="text-color-contrast"><i class="icon ion-alert-circled"></i></h2>
 			<h3 class="text-color-contrast">Card Deck is empty.</h3>
 			<button ng-click="reload()" class="button button-small button-light">Reload</button>
@@ -26,9 +28,7 @@
 	    on-transition-left="cardSwipedLeft($index)" 
 	    on-transition-right="cardSwipedRight($index)" 
 	    on-partial-swipe="cardPartialSwipe(amt)" 
-	    class="card-{{$index}}"
-	    ui-sref="premiumappOne.tinder-profile({profileID: 1})"
-	    >
+	    class="card-{{$index}}">
 
 	      <div class="no-text">NOPE</div>
 	      <div class="yes-text">YUP</div>
@@ -40,7 +40,7 @@
 		</div>
 		<div class="padding">
 			<h4 class="text-left bold">{{card.title}}</h4>
-			<h6 class="text-left small-info">12 miles away | <i class="icon ion-navigate"></i> {{card.location}}</h6>
+			<h6 class="text-left small-info">500m away | <i class="icon ion-navigate"></i> {{card.location}}</h6>
 		</div>
 
 	    </td-card>
@@ -62,8 +62,6 @@
 				</div>
 			</div>
 		</div>
-
-	    
 
 	  </td-cards>
 </div>
