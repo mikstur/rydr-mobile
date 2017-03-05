@@ -4,10 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-
-
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-image', 'ionic.contrib.ui.tinderCards',
-  'ngResource', 'starter.loaders', 'ion-datetime-picker', 'ngCordova', 'lbServices'])
+  'ngResource', 'starter.loaders', 'ion-datetime-picker', 'ngCordova', 'lbServices', 'ion-floating-menu','ng-mfb'])
 
   .run(function ($ionicPlatform) {
     // $cordovaStatusbar.hide();
@@ -167,7 +165,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-imag
       }
     })
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/appPremiumOne/walkthrough');
-  // $urlRouterProvider.otherwise('/app/tinder-one');
-});
+      .state('premiumappOne.trip-details', {
+        url: "/trip-details?tripId",
+        views: {
+          'menuContent': {
+            templateUrl: "app/tripfeed/tripfeed.html",
+            controller: "TripFeedCtrl"
+          }
+        }
+      })
+
+      .state('premiumappOne.matched', {
+        url: "/matched",
+        views: {
+          'menuContent': {
+            templateUrl: "app/matched/matched.html",
+            controller: "MatchedCtrl"
+          }
+        }
+      })
+
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/appPremiumOne/walkthrough');
+    // $urlRouterProvider.otherwise('/app/tinder-one');
+  });
