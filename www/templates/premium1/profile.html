@@ -1,9 +1,9 @@
 <!-- Tinder Profile - refer to tinder.scss -->
 <ion-view view-title="Tinder Profile" hide-nav-bar="true">
-  <ion-content scroll="true" class="premium-profile-screen" ng-controller="TinderProfileCtrl">
+  <ion-content scroll="true" class="premium-profile-screen">
     <div class="bar">
       <button class="button button-clear icon ion-ios-arrow-back" ui-sref="premiumappOne.cardSwipe"></button>
-      <h1 class="title">{{profileDetails.title}}</h1>
+      <h1 class="title">{{user.firstname}}</h1>
       <button class="button button-clear icon ion-fireball" menu-toggle="right">
         <span class="notification-bubble">8</span>
       </button>
@@ -14,13 +14,13 @@
       <div class="slider-clip">
         <ion-slide-box on-slide-changed="slideHasChanged($index)">
           <ion-slide>
-            <img ng-src="img/demo/profile-default.jpg" src="img/demo/profile-default.jpg">
+            <img src="{{user.profilePictureUrl}}">
           </ion-slide>
         </ion-slide-box>
       </div>
       <div class="profile-details row">
         <div class="col">
-          <h4><span class="bold">Nadim Rifai</span></h4>
+          <h4><span class="bold">{{user.firstname}} {{user.lastname}}</span></h4>
           <h6>Location: Cape Town</h6>
         </div>
         <!--<div class="col tinder-profile-actions">

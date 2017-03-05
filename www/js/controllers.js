@@ -8,18 +8,46 @@ angular.module('starter.controllers', ['ngSanitize'])
     // listen for the $ionicView.enter event:
 
     $scope.$on('$ionicView.enter', function (e) {
-      RbgUser.me({}, function(response, responseHeaders) {
+      RbgUser.me({}, function (response, responseHeaders) {
         $rootScope.user = response.user;
-      }, function(httpResponse) {
+      }, function (httpResponse) {
         $state.go("premiumappOne.walkthrough");
       });
     });
 
   })
 
-  .controller('WalkthroughCtrl', function ($rootScope, $scope, $state, $cordovaToast, $ionicSlideBoxDelegate) {
+  .controller('WalkthroughCtrl', function ($rootScope, $scope, $state, $cordovaToast, $ionicSlideBoxDelegate, RbgUser) {
 
-    console.log($rootScope);
+    $scope.origin = {
+      lat: 0,
+      lng: 0
+    };
+
+    $scope.destination = {};
+
+    $scope.$on('$ionicView.enter', function (e) {
+      RbgUser.me({}, function (response, responseHeaders) {
+        $rootScope.user = response.user;
+        $state.go("premiumappOne.tinder-profile", { userId: $rootScope.user.id });
+      }, function (httpResponse) {
+        //$state.go("premiumappOne.walkthrough");
+      });
+
+      if (window.cordova) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          $scope.origin.lat = position.coords.latitude;
+          $scope.origin.lng = position.coords.longitude;
+        });
+      } else {
+        $scope.origin = {
+          lat: -33.9275833,
+          lng: 18.4149476
+        };
+      }
+
+    });
+
     $scope.slideIndex = 0;
     $scope.slideCount = 4;  //$ionicSlideBoxDelegate.slidesCount() currently returns underfined. Looking into this
     $scope.slideCount = $scope.slideCount - 1;
@@ -42,14 +70,10 @@ angular.module('starter.controllers', ['ngSanitize'])
       }
     }
 
-    $scope.navToRegistration = function() {
+    $scope.navToRegistration = function () {
       $state.go('premiumappOne.registration');
     }
 
-    // Called to navigate to the main app
-    $scope.startApp = function () {
-      $state.go('premiumappOne.cardSwipe');
-    };
     $scope.next = function () {
       $ionicSlideBoxDelegate.next();
     };
@@ -57,6 +81,7 @@ angular.module('starter.controllers', ['ngSanitize'])
       $ionicSlideBoxDelegate.previous();
     };
 
+    /*
     // Called each time the slide changes
     $scope.slideChanged = function (index) {
       $scope.slideIndex = index;
@@ -87,6 +112,7 @@ angular.module('starter.controllers', ['ngSanitize'])
       }
 
     };
+    */
   })
 
 
@@ -109,30 +135,19 @@ angular.module('starter.controllers', ['ngSanitize'])
   })
 
 
-  .controller('TinderProfileCtrl', function ($scope, ApiClient, LoaderService, $stateParams) {
+  .controller('TinderProfileCtrl', function ($scope, LoaderService, $stateParams, RbgUser) {
 
-    // Run the LoaderService ("Loading....")
-    //LoaderService.show()
+    LoaderService.show();
 
-    $scope.profileID = $stateParams.profileID;
-    console.log('profileID is = ' + $scope.profileID);
-    // $scope.ajaxRequest = ApiClient.ProfileDetails.get({ profileID: $scope.profileID });
-    // $scope.ajaxRequest.$promise.then(function () {
-    //   // If API Call is successful
-    //   LoaderService.hide();
-    //   $scope.profileDetails = $scope.ajaxRequest;
-    // },
-    //   //If API call fails
-    //   function () {
-    //     var ErrorMessage = 'Api Call not successful. Check your apiBaseUrl (www/api-client/services/card-api-service.js) or ensure your proxy is well configured';
-    //     console.error(ErrorMessage);
-    //     LoaderService.errorLoading('Something went wrong. Please try again later');
+    //$scope.userId = $stateParams.userId;
+    $scope.user = null;
 
-    //     //Set Deck to empty to enable the user reload the cards
-    //     $scope.deckIsEmpty = true;
-    //   }
-
-    // )
+    RbgUser.me({}, function (response, responseHeaders) {
+      LoaderService.hide();
+      $scope.user = response.user;
+    }, function (httpResponse) {
+      LoaderService.hide();
+    });
 
   })
 

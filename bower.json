@@ -7,6 +7,7 @@
   "dependencies": {
     "ion-datetime-picker": "^0.5.0",
     "ngCordova": "^0.1.27-alpha",
-    "ng-material-floating-button": "ng-mfb#^0.6.2"
+    "ng-material-floating-button": "ng-mfb#^0.6.2",
+    "ion-google-place": "^0.0.1"
   }
 }

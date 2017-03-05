@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-image', 'ionic.contrib.ui.tinderCards',
-  'ngResource', 'starter.loaders', 'ion-datetime-picker', 'ngCordova', 'lbServices', 'ion-floating-menu','ng-mfb'])
+  'ngResource', 'starter.loaders', 'ion-datetime-picker', 'ngCordova', 'lbServices',
+  'ion-floating-menu', 'ng-mfb', 'ion-google-place'
+  ])
 
   .run(function ($ionicPlatform) {
     // $cordovaStatusbar.hide();
@@ -131,7 +133,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-preload-imag
       url: "/profile/:userId",
       views: {
         'menuContent': {
-          templateUrl: "templates/premium1/profile.html"
+          templateUrl: "templates/premium1/profile.html",
+          controller: "TinderProfileCtrl"
         }
       }
     })

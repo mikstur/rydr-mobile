@@ -28,25 +28,25 @@
         <!-- <ion-item menu-close href="#/app/tinder-profile/1">
           Tinder Profile
         </ion-item> -->
-        <ion-item menu-close ui-sref="premiumappOne.tinder-profile({profileID: 1})" class="item-thumbnail item-icon-right">
-          <img src="img/demo/profile-image-3.jpg" class="profile-thumb">
-          Nadim Rifai
+        <ion-item menu-close ui-sref="premiumappOne.tinder-profile" class="item-thumbnail item-icon-right">
+          <img src="{{user.profilePictureUrl}}" class="profile-thumb">
+          {{user.firstname}} {{user.lastname}}
           <i class="icon ion-ios-gear-outline"></i>
         </ion-item>
-        <ion-item menu-close href="#" class="item-icon-left">
+        <ion-item menu-close ui-sref="premiumappOne.trips" class="item-icon-left">
           <i class="icon ion-ios-list-outline"></i> Trips
         </ion-item>
-        <ion-item menu-close href="#" class="item-icon-left">
+        <ion-item menu-close ui-sref="premiumappOne.tinder-profile" class="item-icon-left">
           <i class="icon ion-ios-lightbulb-outline"></i> Popular Routes
         </ion-item>
-        <ion-item menu-close href="#">
+        <ion-item menu-close ui-sref="premiumappOne.tinder-profile">
           Money Saved
           <span class="badge badge-assertive">R 6,200</span>
         </ion-item>
-        <ion-item menu-close href="#">
+        <ion-item menu-close ui-sref="premiumappOne.tinder-profile">
           Games
         </ion-item>
-        <ion-item menu-close class="item-icon-left" href="#">
+        <ion-item menu-close class="item-icon-left" ui-sref="premiumappOne.tinder-profile">
           <i class="icon ion-ios-information"></i> About Rydr
         </ion-item>
       </ion-list>
