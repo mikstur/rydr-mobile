@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngSanitize'])
 
-  .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+  .controller('AppCtrl', function ($rootScope, $scope, $state, $ionicModal, $timeout, RbgUser) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -8,13 +8,18 @@ angular.module('starter.controllers', ['ngSanitize'])
     // listen for the $ionicView.enter event:
 
     $scope.$on('$ionicView.enter', function (e) {
-
+      RbgUser.me({}, function(response, responseHeaders) {
+        $rootScope.user = response.user;
+      }, function(httpResponse) {
+        $state.go("premiumappOne.walkthrough");
+      });
     });
 
   })
 
-  .controller('WalkthroughCtrl', function ($scope, $state, $cordovaToast, $ionicSlideBoxDelegate) {
+  .controller('WalkthroughCtrl', function ($rootScope, $scope, $state, $cordovaToast, $ionicSlideBoxDelegate) {
 
+    console.log($rootScope);
     $scope.slideIndex = 0;
     $scope.slideCount = 4;  //$ionicSlideBoxDelegate.slidesCount() currently returns underfined. Looking into this
     $scope.slideCount = $scope.slideCount - 1;
@@ -35,6 +40,10 @@ angular.module('starter.controllers', ['ngSanitize'])
         // console.log('Tap Function Activated');
         $scope.next();
       }
+    }
+
+    $scope.navToRegistration = function() {
+      $state.go('premiumappOne.registration');
     }
 
     // Called to navigate to the main app
